@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacck3y - Pentester</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(220, 38, 38, 0.5); }
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #9ca3af;
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #dc2626;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(220, 38, 38, 0.2);
+            border-color: rgba(220, 38, 38, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .terminal-card {
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 48px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ef4444; }
+        .dot-yellow { background-color: #eab308; }
+        .dot-green { background-color: #22c55e; }
+
+        .terminal-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .terminal-content {
+            font-family: 'JetBrains Mono', monospace;
+            color: #22c55e;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .prompt {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background-color: #22c55e;
+            margin-left: 4px;
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .link-card {
+            position: relative;
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .link-card:nth-child(1) { animation-delay: 0.3s; }
+        .link-card:nth-child(2) { animation-delay: 0.4s; }
+        .link-card:nth-child(3) { animation-delay: 0.5s; }
+        .link-card:nth-child(4) { animation-delay: 0.6s; }
+        .link-card:nth-child(5) { animation-delay: 0.7s; }
+        .link-card:nth-child(6) { animation-delay: 0.8s; }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .link-card:hover {
+            border-color: rgba(220, 38, 38, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(220, 38, 38, 0.2);
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+        }
+
+        .link-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(220, 38, 38, 0.05));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-card:hover .link-icon-wrapper {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.3), rgba(220, 38, 38, 0.1));
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .link-icon {
+            font-size: 28px;
+            color: #dc2626;
+        }
+
+        .link-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .link-description {
+            font-size: 14px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        .link-arrow {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .link-card:hover .link-arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px;
+            background: rgba(15, 15, 15, 0.6);
+            border-radius: 16px;
+            border: 1px solid rgba(220, 38, 38, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease 0.9s both;
+        }
+
+        .footer-text {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .footer-hint {
+            color: #4b5563;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .terminal-card {
+                padding: 20px;
+            }
+        }
+
+        /* Particle effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #dc2626;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                opacity: 0;
+                transform: translateY(0) translateX(0);
+            }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { 
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="hero-section">
+            <div class="profile-avatar">
+                <i class="fas fa-user-secret"></i>
+            </div>
+            <h1 class="hero-title">Hacck3y</h1>
+            <p class="hero-subtitle">Security Researcher & Penetration Tester</p>
+            <div class="badge-container">
+                <div class="badge">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>Red Team</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-bug"></i>
+                    <span>Bug Hunter</span>
+                </div>
+                <div class="badge">
+                    <i class="fas fa-trophy"></i>
+                    <span>HackTheBox</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="terminal-card">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                </div>
+                <span class="terminal-title">terminal@hacck3y:~</span>
+            </div>
+            <div class="terminal-content">
+                <span class="prompt">$ </span><span id="typed-text"></span><span class="cursor"></span>
+            </div>
+        </div>
+
+        <div class="links-grid">
+            <a href="https://discord.gg/VaEaMKgKuX" class="link-card">
+                <div class="link-icon-wrapper">
+                    <i class="fab fa-discord link-icon"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">
+                        Discord
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </div>
+                    <p class="link-description">Join the community server</p>
+                </div>
+            </a>
+
+            <a href="https://github.com/hacck3y" class="link-card">
+                <div class="link-icon-wrapper">
+                    <i class="fab fa-github link-icon"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">
+                        GitHub
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </div>
+                    <p class="link-description">Open source projects & tools</p>
+                </div>
+            </a>
+
+            <a href="https://blogs.hacck3y.me" class="link-card">
+                <div class="link-icon-wrapper">
+                    <i class="fas fa-newspaper link-icon"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">
+                        Blog
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </div>
+                    <p class="link-description">Security writeups & articles</p>
+                </div>
+            </a>
+
+            <a href="https://notes.hacck3y.me" class="link-card">
+                <div class="link-icon-wrapper">
+                    <i class="fas fa-book link-icon"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">
+                        Notes
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </div>
+                    <p class="link-description">Personal knowledge base</p>
+                </div>
+            </a>
+
+            <a href="https://x.com/hacck3y" class="link-card">
+                <div class="link-icon-wrapper">
+                    <i class="fab fa-x-twitter link-icon"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">
+                        X (Twitter)
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </div>
+                    <p class="link-description">Latest updates & thoughts</p>
+                </div>
+            </a>
+
+            <a href="https://app.hackthebox.com/users/2222930" class="link-card">
+                <div class="link-icon-wrapper">
+                    <i class="fas fa-cube link-icon"></i>
+                </div>
+                <div class="link-content">
+                    <div class="link-title">
+                        HackTheBox
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </div>
+                    <p class="link-description">CTF profile & achievements</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p class="footer-text">© 2026 Hacck3y. All rights reserved.</p>
+            <p class="footer-hint">Hint: //github.com/Hacck3y</p>
+        </div>
+    </div>
+
+    <script>
+        // Terminal typing effect
+        const typedTextElement = document.getElementById('typed-text');
+        const commandText = '/usr/bin/whoami';
+        const resultText = 'Hacck3y';
+        let currentIndex = 0;
+        let isTypingCommand = true;
+
+        function typeText() {
+            if (isTypingCommand) {
+                if (currentIndex <= commandText.length) {
+                    typedTextElement.textContent = commandText.slice(0, currentIndex);
+                    currentIndex++;
+                    setTimeout(typeText, 100);
+                } else {
+                    isTypingCommand = false;
+                    currentIndex = 0;
+                    setTimeout(typeText, 300);
+                }
+            } else {
+                if (currentIndex <= resultText.length) {
+                    typedTextElement.textContent = commandText + '\n> ' + resultText.slice(0, currentIndex);
+                    currentIndex++;
+                    setTimeout(typeText, 100);
+                } else {
+                    setTimeout(() => {
+                        typedTextElement.textContent = '';
+                        currentIndex = 0;
+                        isTypingCommand = true;
+                        typeText();
+                    }, 10000);
+                }
+            }
+        }
+
+        typeText();
+
+        // Particle effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
