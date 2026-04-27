@@ -1,6 +1,5 @@
 ## Hi there 👋
 
-![Uploading 238355349-7d484dc9-68a9-4ee6-a767-aea59035c12d.gif…]()
 
 <!--
 **Hacck3y/hacck3y** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
