@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacck3y - Pentester</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -31,7 +34,7 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
@@ -64,8 +67,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3); }
-            50% { transform: scale(1.05); box-shadow: 0 12px 40px rgba(220, 38, 38, 0.5); }
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 40px rgba(220, 38, 38, 0.5);
+            }
         }
 
         .hero-title {
@@ -143,9 +155,17 @@
             border-radius: 50%;
         }
 
-        .dot-red { background-color: #ef4444; }
-        .dot-yellow { background-color: #eab308; }
-        .dot-green { background-color: #22c55e; }
+        .dot-red {
+            background-color: #ef4444;
+        }
+
+        .dot-yellow {
+            background-color: #eab308;
+        }
+
+        .dot-green {
+            background-color: #22c55e;
+        }
 
         .terminal-title {
             font-family: 'JetBrains Mono', monospace;
@@ -176,8 +196,16 @@
         }
 
         @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
         }
 
         .links-grid {
@@ -200,12 +228,29 @@
             animation: fadeInUp 0.8s ease both;
         }
 
-        .link-card:nth-child(1) { animation-delay: 0.3s; }
-        .link-card:nth-child(2) { animation-delay: 0.4s; }
-        .link-card:nth-child(3) { animation-delay: 0.5s; }
-        .link-card:nth-child(4) { animation-delay: 0.6s; }
-        .link-card:nth-child(5) { animation-delay: 0.7s; }
-        .link-card:nth-child(6) { animation-delay: 0.8s; }
+        .link-card:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .link-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .link-card:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .link-card:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .link-card:nth-child(5) {
+            animation-delay: 0.7s;
+        }
+
+        .link-card:nth-child(6) {
+            animation-delay: 0.8s;
+        }
 
         .link-card::before {
             content: '';
@@ -307,6 +352,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -353,21 +399,31 @@
         }
 
         @keyframes float {
-            0%, 100% { 
+
+            0%,
+            100% {
                 opacity: 0;
                 transform: translateY(0) translateX(0);
             }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { 
+
+            10% {
+                opacity: 0.3;
+            }
+
+            90% {
+                opacity: 0.3;
+            }
+
+            100% {
                 transform: translateY(-100vh) translateX(100px);
             }
         }
     </style>
 </head>
+
 <body>
     <div class="particles" id="particles"></div>
-    
+
     <div class="container">
         <div class="hero-section">
             <div class="profile-avatar">
@@ -445,16 +501,17 @@
                 </div>
             </a>
 
-            <a href="https://soul.hacck3y.me" class="link-card">
+            <a href="soul.html" class="link-card">
                 <div class="link-icon-wrapper">
                     <i class="fas fa-book link-icon"></i>
                 </div>
                 <div class="link-content">
                     <div class="link-title">
-                        Notes
+                        cheatsheets
                         <i class="fas fa-arrow-right link-arrow"></i>
                     </div>
-                    <p class="link-description">A collection of my notes, cheatsheets, and learnings on coding, biology, science, and more.</p>
+                    <p class="link-description"> Intractive Cheatsheets of Active Directory, Privilege Escalation, etc.
+                    </p>
                 </div>
             </a>
 
@@ -544,4 +601,5 @@
         createParticles();
     </script>
 </body>
+
 </html>
