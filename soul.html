@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cheatsheets | Hacck3y</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="particles" id="particles"></div>
+
+    <div class="container app-shell">
+        <header class="app-header">
+            <div class="app-title">
+                <div class="profile-avatar header-avatar">
+                    <i class="fas fa-terminal" style="color: #fff;"></i>
+                </div>
+                <div>
+                    <h1 class="hero-name page-title">Interactive Cheatsheets</h1>
+                    <p class="hero-tagline page-subtitle">Build commands in real-time</p>
+                </div>
+            </div>
+            <a href="index.html" class="protocol-btn active home-btn">
+                <i class="fas fa-home"></i>
+                <span>Back to Home</span>
+            </a>
+        </header>
+
+        <!-- Interactive Cheatsheets Section -->
+        <div class="tool-section">
+            <div class="tool-selector" id="tool-selector">
+                <!-- Tool tabs (NXC, BloodyAD, etc) will be rendered here -->
+            </div>
+
+            <div class="workspace-bar">
+                <div>
+                    <p class="workspace-kicker">Authorized AD Lab Workflow</p>
+                    <h2 id="workspace-title">Command Builder</h2>
+                </div>
+                <div class="search-box">
+                    <i class="ti ti-search"></i>
+                    <input type="search" id="command-search" placeholder="Search commands, tags, notes...">
+                </div>
+            </div>
+
+            <!-- Credential Bar -->
+            <div class="cred-bar">
+                <div class="cred-grid">
+                    <div class="cred-item">
+                        <label for="dc">DC IP / Host</label>
+                        <input type="text" id="dc" placeholder="192.168.1.50">
+                    </div>
+                    <div class="cred-item">
+                        <label for="target">Target / CIDR</label>
+                        <input type="text" id="target" placeholder="192.168.1.0/24">
+                    </div>
+                    <div class="cred-item">
+                        <label for="user">Username</label>
+                        <input type="text" id="user" placeholder="administrator">
+                    </div>
+                    <div class="cred-item">
+                        <label for="pass">Password</label>
+                        <input type="text" id="pass" placeholder="P@ssw0rd">
+                    </div>
+                    <div class="cred-item">
+                        <label for="hash">Hash (NT)</label>
+                        <input type="text" id="hash" placeholder="aad3b435...">
+                    </div>
+                    <div class="cred-item">
+                        <label for="domain">Domain</label>
+                        <input type="text" id="domain" placeholder="lab.local">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Protocol Tabs -->
+            <div class="tabs-container">
+                <div class="tabs" id="tabs">
+                    <!-- Protocol tabs rendered here -->
+                </div>
+            </div>
+
+            <!-- Command Content -->
+            <div class="tool-content" id="panels">
+                <!-- Command panels rendered here -->
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">© 2026 Hacck3y. All rights reserved.</p>
+            <p class="footer-hint">Interactive Suite v1.0</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="commands.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
