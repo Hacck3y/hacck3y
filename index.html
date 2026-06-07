@@ -8,7 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -228,6 +228,137 @@
             animation: fadeInUp 0.8s ease both;
         }
 
+        .link-card-featured {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: stretch;
+            gap: 24px;
+            padding: 26px 28px;
+            border-color: rgba(220, 38, 38, 0.38);
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.07), rgba(15, 15, 15, 0.92));
+        }
+
+        .link-card-featured .link-icon-wrapper {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 0;
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        .link-card-featured .link-icon {
+            font-size: 32px;
+        }
+
+        .link-content-featured {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .link-featured-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .link-featured-label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #dc2626;
+            margin-bottom: 6px;
+        }
+
+        .link-featured-status {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #86efac;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .link-featured-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+        }
+
+        .link-card-featured .link-title {
+            font-size: 22px;
+            margin-bottom: 0;
+        }
+
+        .link-card-featured .link-title .link-arrow {
+            display: none;
+        }
+
+        .link-card-featured .link-description {
+            font-size: 14px;
+            line-height: 1.65;
+            color: #b6beca;
+            max-width: 62ch;
+        }
+
+        .link-featured-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .link-featured-tags span {
+            font-size: 12px;
+            font-weight: 500;
+            color: #9ca3af;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(220, 38, 38, 0.15);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .link-featured-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .link-featured-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            transition: gap 0.2s ease;
+        }
+
+        .link-card-featured:hover .link-featured-cta {
+            gap: 10px;
+        }
+
         .link-card:nth-child(1) {
             animation-delay: 0.3s;
         }
@@ -376,12 +507,32 @@
                 grid-template-columns: 1fr;
             }
 
+            .link-card-featured {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 22px;
+            }
+
+            .link-card-featured .link-icon-wrapper {
+                margin-bottom: 0;
+                align-self: flex-start;
+            }
+
+            .link-featured-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .link-featured-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
             .terminal-card {
                 padding: 20px;
             }
         }
 
-        /* Particle effect */
         .particles {
             position: fixed;
             top: 0;
@@ -466,16 +617,32 @@
         </div>
 
         <div class="links-grid">
-            <a href="https://discord.gg/VaEaMKgKuX" class="link-card">
+            <a href="pentesting.html" class="link-card link-card-featured">
                 <div class="link-icon-wrapper">
-                    <i class="fab fa-discord link-icon"></i>
+                    <i class="fas fa-shield-halved link-icon"></i>
                 </div>
-                <div class="link-content">
-                    <div class="link-title">
-                        Discord
-                        <i class="fas fa-arrow-right link-arrow"></i>
+                <div class="link-content link-content-featured">
+                    <div class="link-featured-top">
+                        <div>
+                            <span class="link-featured-label">Pentesting services</span>
+                            <div class="link-title">Web App Pentesting</div>
+                        </div>
+                        <span class="link-featured-status">Available</span>
                     </div>
-                    <p class="link-description">Join the community server</p>
+                    <p class="link-description">
+                        One-off assessments and ongoing coverage for teams that ship fast. Web &amp; API testing,
+                        OWASP-aligned findings, NDA &amp; RoE before any work starts — scope, rates &amp; contact on the services page.
+                    </p>
+                    <div class="link-featured-tags">
+                        <span>Project-based</span>
+                        <span>Ongoing retainer</span>
+                        <span>Web + API</span>
+                        <span>NDA included</span>
+                    </div>
+                    <div class="link-featured-footer">
+                        <span>24h quote · confidential · authorized testing only</span>
+                        <span class="link-featured-cta">Scope, rates &amp; contact <i class="fas fa-arrow-right"></i></span>
+                    </div>
                 </div>
             </a>
 
@@ -501,7 +668,7 @@
                         Blog
                         <i class="fas fa-arrow-right link-arrow"></i>
                     </div>
-                    <p class="link-description">Security writeups & articles</p>
+                    <p class="link-description">Bug bounty writeups, vulnerability research & articles</p>
                 </div>
             </a>
 
@@ -514,14 +681,13 @@
                         cheatsheets
                         <i class="fas fa-arrow-right link-arrow"></i>
                     </div>
-                    <p class="link-description"> Intractive Cheatsheets of Active Directory, Privilege Escalation, etc.
-                    </p>
+                    <p class="link-description">Interactive cheatsheets for Active Directory, privilege escalation, and more.</p>
                 </div>
             </a>
 
             <a href="https://x.com/hacck3y" class="link-card">
                 <div class="link-icon-wrapper">
-                    <i class="fab fa-x-twitter link-icon"></i>
+                    <i class="fa-brands fa-x-twitter link-icon"></i>
                 </div>
                 <div class="link-content">
                     <div class="link-title">
@@ -544,8 +710,6 @@
                     <p class="link-description">CTF profile & achievements</p>
                 </div>
             </a>
-
-           
         </div>
 
         <div class="footer">
@@ -555,7 +719,6 @@
     </div>
 
     <script>
-        // Terminal typing effect
         const typedTextElement = document.getElementById('typed-text');
         const commandText = '/usr/bin/whoami';
         const resultText = 'Hacck3y';
@@ -591,7 +754,6 @@
 
         typeText();
 
-        // Particle effect
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             for (let i = 0; i < 20; i++) {
