@@ -4,103 +4,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacck3y - Pentester</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <title>Hacck3y — Security Researcher & Penetration Tester</title>
+    <meta name="description" content="Hacck3y — Security researcher and penetration tester. Web & API pentesting services, bug bounty writeups, interactive cheatsheets and open source tools.">
+    <meta name="theme-color" content="#0a0a0c">
+    <meta property="og:title" content="Hacck3y — Security Researcher & Penetration Tester">
+    <meta property="og:description" content="Web & API pentesting services, bug bounty writeups, cheatsheets and open source security tools.">
+    <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
+        :root {
+            --bg: #08090b;
+            --surface: rgba(15, 17, 21, 0.85);
+            --surface-raised: rgba(20, 23, 29, 0.9);
+            --border: rgba(148, 163, 184, 0.14);
+            --border-strong: rgba(220, 38, 38, 0.4);
+            --accent: #dc2626;
+            --accent-dark: #991b1b;
+            --accent-soft: rgba(220, 38, 38, 0.1);
+            --text: #f4f5f7;
+            --text-secondary: #b6beca;
+            --text-tertiary: #7b8494;
+            --green: #22c55e;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            padding: 40px 20px;
-            position: relative;
-            overflow-x: hidden;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            background: linear-gradient(160deg, #08090b 0%, #150b0d 55%, #08090b 100%);
+            color: var(--text);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle grid texture */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
+            inset: 0;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 80%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 80%);
             pointer-events: none;
             z-index: 0;
         }
 
-        .container {
-            max-width: 1000px;
+        body::after {
+            content: '';
+            position: fixed;
+            top: -180px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 720px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.14) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #38bdf8;
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        /* ---------- Navigation ---------- */
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 16px 24px;
+            background: rgba(8, 9, 11, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            font-size: 15px;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .nav-links a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border-radius: 9px;
+            background: var(--accent);
+            color: #fff !important;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.25);
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 26px rgba(220, 38, 38, 0.35);
+        }
+
+        /* ---------- Layout ---------- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 56px 24px 40px;
             position: relative;
             z-index: 1;
         }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #dc2626, #991b1b);
-            border-radius: 50%;
-            margin: 0 auto 24px;
-            display: flex;
+        /* ---------- Hero ---------- */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            gap: 48px;
             align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
-            animation: pulse 2s ease-in-out infinite;
+            margin-bottom: 72px;
+            animation: fadeInUp 0.8s ease both;
         }
 
-        @keyframes pulse {
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #fca5a5;
+            background: var(--accent-soft);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            padding: 7px 14px;
+            border-radius: 999px;
+            margin-bottom: 22px;
+        }
 
-            0%,
-            100% {
-                transform: scale(1);
-                box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
-            }
-
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 12px 40px rgba(220, 38, 38, 0.5);
-            }
+        .hero-eyebrow::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
         }
 
         .hero-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff, #dc2626);
+            font-size: clamp(2.6rem, 6vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            margin-bottom: 18px;
+        }
+
+        .hero-title .gradient {
+            background: linear-gradient(135deg, #ffffff 20%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero-subtitle {
-            font-size: 20px;
-            color: #9ca3af;
-            font-weight: 400;
-            margin-bottom: 24px;
+        .hero-lead {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 50ch;
+            margin-bottom: 26px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 22px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #fff;
+            box-shadow: 0 8px 26px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 34px rgba(220, 38, 38, 0.42);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--border-strong);
+            background: var(--accent-soft);
         }
 
         .badge-container {
             display: flex;
-            gap: 12px;
-            justify-content: center;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
@@ -108,134 +286,179 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: rgba(220, 38, 38, 0.1);
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            border-radius: 24px;
-            font-size: 14px;
+            padding: 7px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 13px;
             font-weight: 500;
-            color: #dc2626;
-            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            transition: all 0.25s ease;
+        }
+
+        .badge i {
+            color: var(--accent);
+            font-size: 12px;
         }
 
         .badge:hover {
-            background: rgba(220, 38, 38, 0.2);
-            border-color: rgba(220, 38, 38, 0.5);
+            border-color: var(--border-strong);
+            background: var(--accent-soft);
             transform: translateY(-2px);
         }
 
+        /* ---------- Terminal ---------- */
         .terminal-card {
-            background: rgba(15, 15, 15, 0.8);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 48px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            animation: fadeInUp 0.8s ease 0.2s both;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .terminal-card:hover {
+            border-color: rgba(220, 38, 38, 0.3);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55), 0 0 40px rgba(220, 38, 38, 0.08);
         }
 
         .terminal-header {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.1);
+            padding: 13px 16px;
+            background: rgba(255, 255, 255, 0.025);
+            border-bottom: 1px solid var(--border);
         }
 
         .terminal-dots {
             display: flex;
-            gap: 8px;
+            gap: 7px;
         }
 
         .terminal-dot {
-            width: 12px;
-            height: 12px;
+            width: 11px;
+            height: 11px;
             border-radius: 50%;
         }
 
-        .dot-red {
-            background-color: #ef4444;
-        }
-
-        .dot-yellow {
-            background-color: #eab308;
-        }
-
-        .dot-green {
-            background-color: #22c55e;
-        }
+        .dot-red { background-color: #ef4444; }
+        .dot-yellow { background-color: #eab308; }
+        .dot-green { background-color: #22c55e; }
 
         .terminal-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            color: #6b7280;
+            font-family: var(--font-mono);
+            font-size: 12.5px;
+            color: var(--text-tertiary);
         }
 
         .terminal-content {
-            font-family: 'JetBrains Mono', monospace;
-            color: #22c55e;
-            font-size: 16px;
-            line-height: 1.8;
+            font-family: var(--font-mono);
+            color: var(--green);
+            font-size: 14.5px;
+            line-height: 1.85;
+            padding: 22px 20px;
+            min-height: 150px;
+            white-space: pre-wrap;
         }
 
         .prompt {
-            color: #dc2626;
+            color: var(--accent);
             font-weight: 600;
         }
 
         .cursor {
             display: inline-block;
             width: 8px;
-            height: 18px;
-            background-color: #22c55e;
-            margin-left: 4px;
+            height: 17px;
+            background-color: var(--green);
+            margin-left: 3px;
             vertical-align: middle;
             animation: blink 1s infinite;
         }
 
         @keyframes blink {
-
-            0%,
-            50% {
-                opacity: 1;
-            }
-
-            51%,
-            100% {
-                opacity: 0;
-            }
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
 
+        /* ---------- Sections ---------- */
+        .section-head {
+            margin-bottom: 26px;
+        }
+
+        .section-kicker {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+        }
+
+        /* ---------- Featured Card ---------- */
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 48px;
+            gap: 18px;
+            margin-bottom: 72px;
         }
 
         .link-card {
             position: relative;
-            background: rgba(15, 15, 15, 0.8);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            border-radius: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
             padding: 24px;
             text-decoration: none;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.28s ease;
             backdrop-filter: blur(10px);
             animation: fadeInUp 0.8s ease both;
         }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.09), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.28s ease;
+        }
+
+        .link-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45), 0 0 32px rgba(220, 38, 38, 0.1);
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+        }
+
+        .link-card:nth-child(1) { animation-delay: 0.15s; }
+        .link-card:nth-child(2) { animation-delay: 0.25s; }
+        .link-card:nth-child(3) { animation-delay: 0.32s; }
+        .link-card:nth-child(4) { animation-delay: 0.39s; }
+        .link-card:nth-child(5) { animation-delay: 0.46s; }
+        .link-card:nth-child(6) { animation-delay: 0.53s; }
 
         .link-card-featured {
             grid-column: 1 / -1;
             display: flex;
             align-items: stretch;
-            gap: 24px;
-            padding: 26px 28px;
+            gap: 26px;
+            padding: 28px 30px;
             border-color: rgba(220, 38, 38, 0.38);
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.07), rgba(15, 15, 15, 0.92));
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(15, 17, 21, 0.94));
         }
 
         .link-card-featured .link-icon-wrapper {
@@ -247,7 +470,7 @@
         }
 
         .link-card-featured .link-icon {
-            font-size: 32px;
+            font-size: 30px;
         }
 
         .link-content-featured {
@@ -267,12 +490,12 @@
 
         .link-featured-label {
             display: block;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: #dc2626;
+            color: var(--accent);
             margin-bottom: 6px;
         }
 
@@ -280,7 +503,7 @@
             flex-shrink: 0;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -288,7 +511,7 @@
             background: rgba(34, 197, 94, 0.1);
             border: 1px solid rgba(34, 197, 94, 0.25);
             padding: 6px 12px;
-            border-radius: 8px;
+            border-radius: 999px;
             text-transform: uppercase;
             white-space: nowrap;
         }
@@ -298,7 +521,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #22c55e;
+            background: var(--green);
             box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
         }
 
@@ -314,8 +537,8 @@
         .link-card-featured .link-description {
             font-size: 14px;
             line-height: 1.65;
-            color: #b6beca;
-            max-width: 62ch;
+            color: var(--text-secondary);
+            max-width: 64ch;
         }
 
         .link-featured-tags {
@@ -327,11 +550,11 @@
         .link-featured-tags span {
             font-size: 12px;
             font-weight: 500;
-            color: #9ca3af;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(220, 38, 38, 0.15);
-            padding: 5px 10px;
-            border-radius: 20px;
+            color: var(--text-tertiary);
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(220, 38, 38, 0.16);
+            padding: 5px 11px;
+            border-radius: 999px;
         }
 
         .link-featured-footer {
@@ -342,13 +565,13 @@
             flex-wrap: wrap;
             padding-top: 4px;
             font-size: 12px;
-            color: #6b7280;
+            color: var(--text-tertiary);
         }
 
         .link-featured-cta {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
             font-size: 13px;
             font-weight: 600;
             color: #fff;
@@ -356,78 +579,33 @@
         }
 
         .link-card-featured:hover .link-featured-cta {
-            gap: 10px;
+            gap: 12px;
         }
 
-        .link-card:nth-child(1) {
-            animation-delay: 0.3s;
-        }
-
-        .link-card:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-
-        .link-card:nth-child(3) {
-            animation-delay: 0.5s;
-        }
-
-        .link-card:nth-child(4) {
-            animation-delay: 0.6s;
-        }
-
-        .link-card:nth-child(5) {
-            animation-delay: 0.7s;
-        }
-
-        .link-card:nth-child(6) {
-            animation-delay: 0.8s;
-        }
-
-        .link-card:nth-child(7) {
-            animation-delay: 0.9s;
-        }
-
-        .link-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .link-card:hover {
-            border-color: rgba(220, 38, 38, 0.6);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(220, 38, 38, 0.2);
-        }
-
-        .link-card:hover::before {
-            opacity: 1;
-        }
-
+        /* ---------- Standard Cards ---------- */
         .link-icon-wrapper {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(220, 38, 38, 0.05));
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.18), rgba(220, 38, 38, 0.05));
+            border: 1px solid rgba(220, 38, 38, 0.18);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
+            margin-bottom: 18px;
+            transition: all 0.28s ease;
             position: relative;
             z-index: 1;
         }
 
         .link-card:hover .link-icon-wrapper {
             background: linear-gradient(135deg, rgba(220, 38, 38, 0.3), rgba(220, 38, 38, 0.1));
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.08);
         }
 
         .link-icon {
-            font-size: 28px;
-            color: #dc2626;
+            font-size: 23px;
+            color: var(--accent);
         }
 
         .link-content {
@@ -436,75 +614,168 @@
         }
 
         .link-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
-            color: #ffffff;
+            color: var(--text);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
+            letter-spacing: -0.01em;
         }
 
         .link-description {
-            font-size: 14px;
-            color: #9ca3af;
-            line-height: 1.5;
+            font-size: 13.5px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
         }
 
         .link-arrow {
             margin-left: auto;
-            transition: transform 0.3s ease;
+            font-size: 13px;
+            color: var(--text-tertiary);
+            transition: transform 0.28s ease, color 0.28s ease;
         }
 
         .link-card:hover .link-arrow {
-            transform: translateX(4px);
+            transform: translateX(5px);
+            color: var(--accent);
         }
 
+        /* ---------- Footer ---------- */
         .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
             text-align: center;
-            padding: 32px;
-            background: rgba(15, 15, 15, 0.6);
+            padding: 36px 28px;
+            background: var(--surface);
             border-radius: 16px;
-            border: 1px solid rgba(220, 38, 38, 0.1);
+            border: 1px solid var(--border);
             backdrop-filter: blur(10px);
-            animation: fadeInUp 0.8s ease 0.9s both;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-secondary);
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .footer-socials a:hover {
+            border-color: var(--border-strong);
+            background: var(--accent-soft);
+            color: #fff;
+            transform: translateY(-2px);
         }
 
         .footer-text {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 12px;
+            color: var(--text-tertiary);
+            font-size: 13.5px;
         }
 
         .footer-hint {
             color: #4b5563;
             font-size: 12px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
         }
 
+        /* ---------- Animations ---------- */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(28px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 36px;
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                opacity: 0;
+                transform: translateY(0) translateX(0);
+            }
+            10%, 90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
 
-            .hero-subtitle {
-                font-size: 18px;
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                margin-bottom: 56px;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 36px 16px 28px;
+            }
+
+            .hero-lead {
+                font-size: 15.5px;
             }
 
             .links-grid {
                 grid-template-columns: 1fr;
+                margin-bottom: 52px;
             }
 
             .link-card-featured {
@@ -514,7 +785,6 @@
             }
 
             .link-card-featured .link-icon-wrapper {
-                margin-bottom: 0;
                 align-self: flex-start;
             }
 
@@ -528,197 +798,201 @@
                 align-items: flex-start;
             }
 
-            .terminal-card {
-                padding: 20px;
-            }
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #dc2626;
-            border-radius: 50%;
-            opacity: 0;
-            animation: float 15s infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                opacity: 0;
-                transform: translateY(0) translateX(0);
-            }
-
-            10% {
-                opacity: 0.3;
-            }
-
-            90% {
-                opacity: 0.3;
-            }
-
-            100% {
-                transform: translateY(-100vh) translateX(100px);
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="particles" id="particles"></div>
+    <div class="particles" id="particles" aria-hidden="true"></div>
+
+    <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-brand">
+            <span class="nav-mark"><i class="fas fa-user-secret"></i></span>
+            hacck3y
+        </a>
+        <div class="nav-links">
+            <a href="pentesting.html">Services</a>
+            <a href="ironman_cheatsheet.html">Cheatsheets</a>
+            <a href="https://blogs.hacck3y.me">Blog</a>
+            <a href="pentesting.html#contact" class="nav-cta">
+                <i class="fas fa-paper-plane"></i> Get a quote
+            </a>
+        </div>
+    </nav>
 
     <div class="container">
-        <div class="hero-section">
-            <div class="profile-avatar">
-                <i class="fas fa-user-secret"></i>
+        <!-- Hero -->
+        <header class="hero">
+            <div>
+                <span class="hero-eyebrow">Available for engagements</span>
+                <h1 class="hero-title">
+                    Security Researcher &amp;<br>
+                    <span class="gradient">Penetration Tester</span>
+                </h1>
+                <p class="hero-lead">
+                    I break web apps and APIs before attackers do. Offensive security assessments,
+                    bug bounty research, and practical writeups — with clear, actionable reporting.
+                </p>
+                <div class="hero-actions">
+                    <a href="pentesting.html" class="btn btn-primary">
+                        <i class="fas fa-shield-halved"></i> Pentesting services
+                    </a>
+                    <a href="https://github.com/hacck3y" class="btn btn-ghost">
+                        <i class="fab fa-github"></i> View GitHub
+                    </a>
+                </div>
+                <div class="badge-container">
+                    <div class="badge">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>Red Team</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-bug"></i>
+                        <span>Bug Hunter</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-trophy"></i>
+                        <span>HackTheBox</span>
+                    </div>
+                </div>
             </div>
-            <h1 class="hero-title">Hacck3y</h1>
-            <p class="hero-subtitle">Security Researcher & Penetration Tester</p>
-            <div class="badge-container">
-                <div class="badge">
-                    <i class="fas fa-shield-halved"></i>
-                    <span>Red Team</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-bug"></i>
-                    <span>Bug Hunter</span>
-                </div>
-                <div class="badge">
-                    <i class="fas fa-trophy"></i>
-                    <span>HackTheBox</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="terminal-card">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <div class="terminal-dot dot-red"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
+            <div class="terminal-card" aria-hidden="true">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="terminal-dot dot-red"></div>
+                        <div class="terminal-dot dot-yellow"></div>
+                        <div class="terminal-dot dot-green"></div>
+                    </div>
+                    <span class="terminal-title">terminal@hacck3y:~</span>
                 </div>
-                <span class="terminal-title">terminal@hacck3y:~</span>
+                <div class="terminal-content"><span class="prompt">$ </span><span id="typed-text"></span><span class="cursor"></span></div>
             </div>
-            <div class="terminal-content">
-                <span class="prompt">$ </span><span id="typed-text"></span><span class="cursor"></span>
-            </div>
-        </div>
+        </header>
 
-        <div class="links-grid">
-            <a href="pentesting.html" class="link-card link-card-featured">
-                <div class="link-icon-wrapper">
-                    <i class="fas fa-shield-halved link-icon"></i>
-                </div>
-                <div class="link-content link-content-featured">
-                    <div class="link-featured-top">
-                        <div>
-                            <span class="link-featured-label">Pentesting services</span>
-                            <div class="link-title">Web App Pentesting</div>
+        <!-- Links -->
+        <section aria-label="Links and services">
+            <div class="section-head">
+                <p class="section-kicker">// explore</p>
+                <h2 class="section-title">Work &amp; Resources</h2>
+            </div>
+
+            <div class="links-grid">
+                <a href="pentesting.html" class="link-card link-card-featured">
+                    <div class="link-icon-wrapper">
+                        <i class="fas fa-shield-halved link-icon"></i>
+                    </div>
+                    <div class="link-content link-content-featured">
+                        <div class="link-featured-top">
+                            <div>
+                                <span class="link-featured-label">Pentesting services</span>
+                                <div class="link-title">Web App Pentesting</div>
+                            </div>
+                            <span class="link-featured-status">Available</span>
                         </div>
-                        <span class="link-featured-status">Available</span>
+                        <p class="link-description">
+                            One-off assessments and ongoing coverage for teams that ship fast. Web &amp; API testing,
+                            OWASP-aligned findings, NDA &amp; RoE before any work starts — scope, rates &amp; contact on the services page.
+                        </p>
+                        <div class="link-featured-tags">
+                            <span>Project-based</span>
+                            <span>Ongoing retainer</span>
+                            <span>Web + API</span>
+                            <span>NDA included</span>
+                        </div>
+                        <div class="link-featured-footer">
+                            <span>24h quote · confidential · authorized testing only</span>
+                            <span class="link-featured-cta">Scope, rates &amp; contact <i class="fas fa-arrow-right"></i></span>
+                        </div>
                     </div>
-                    <p class="link-description">
-                        One-off assessments and ongoing coverage for teams that ship fast. Web &amp; API testing,
-                        OWASP-aligned findings, NDA &amp; RoE before any work starts — scope, rates &amp; contact on the services page.
-                    </p>
-                    <div class="link-featured-tags">
-                        <span>Project-based</span>
-                        <span>Ongoing retainer</span>
-                        <span>Web + API</span>
-                        <span>NDA included</span>
-                    </div>
-                    <div class="link-featured-footer">
-                        <span>24h quote · confidential · authorized testing only</span>
-                        <span class="link-featured-cta">Scope, rates &amp; contact <i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </div>
-            </a>
+                </a>
 
-            <a href="https://github.com/hacck3y" class="link-card">
-                <div class="link-icon-wrapper">
-                    <i class="fab fa-github link-icon"></i>
-                </div>
-                <div class="link-content">
-                    <div class="link-title">
-                        GitHub
-                        <i class="fas fa-arrow-right link-arrow"></i>
+                <a href="https://github.com/hacck3y" class="link-card">
+                    <div class="link-icon-wrapper">
+                        <i class="fab fa-github link-icon"></i>
                     </div>
-                    <p class="link-description">Open source projects & tools</p>
-                </div>
-            </a>
-
-            <a href="https://blogs.hacck3y.me" class="link-card">
-                <div class="link-icon-wrapper">
-                    <i class="fas fa-newspaper link-icon"></i>
-                </div>
-                <div class="link-content">
-                    <div class="link-title">
-                        Blog
-                        <i class="fas fa-arrow-right link-arrow"></i>
+                    <div class="link-content">
+                        <div class="link-title">
+                            GitHub
+                            <i class="fas fa-arrow-right link-arrow"></i>
+                        </div>
+                        <p class="link-description">Open source projects &amp; security tools</p>
                     </div>
-                    <p class="link-description">Bug bounty writeups, vulnerability research & articles</p>
-                </div>
-            </a>
+                </a>
 
-            <a href="ironman_cheatsheet.html" class="link-card">
-                <div class="link-icon-wrapper">
-                    <i class="fas fa-book link-icon"></i>
-                </div>
-                <div class="link-content">
-                    <div class="link-title">
-                        cheatsheets
-                        <i class="fas fa-arrow-right link-arrow"></i>
+                <a href="https://blogs.hacck3y.me" class="link-card">
+                    <div class="link-icon-wrapper">
+                        <i class="fas fa-newspaper link-icon"></i>
                     </div>
-                    <p class="link-description">Interactive cheatsheets for Active Directory, privilege escalation, and more.</p>
-                </div>
-            </a>
-
-            <a href="https://x.com/hacck3y" class="link-card">
-                <div class="link-icon-wrapper">
-                    <i class="fa-brands fa-x-twitter link-icon"></i>
-                </div>
-                <div class="link-content">
-                    <div class="link-title">
-                        X (Twitter)
-                        <i class="fas fa-arrow-right link-arrow"></i>
+                    <div class="link-content">
+                        <div class="link-title">
+                            Blog
+                            <i class="fas fa-arrow-right link-arrow"></i>
+                        </div>
+                        <p class="link-description">Bug bounty writeups, vulnerability research &amp; articles</p>
                     </div>
-                    <p class="link-description">Latest updates & thoughts</p>
-                </div>
-            </a>
+                </a>
 
-            <a href="https://profile.hackthebox.com/profile/019cb2c4-dbba-7229-bca6-b73ef594ff86" class="link-card">
-                <div class="link-icon-wrapper">
-                    <i class="fas fa-cube link-icon"></i>
-                </div>
-                <div class="link-content">
-                    <div class="link-title">
-                        HackTheBox
-                        <i class="fas fa-arrow-right link-arrow"></i>
+                <a href="ironman_cheatsheet.html" class="link-card">
+                    <div class="link-icon-wrapper">
+                        <i class="fas fa-book link-icon"></i>
                     </div>
-                    <p class="link-description">CTF profile & achievements</p>
-                </div>
-            </a>
-        </div>
+                    <div class="link-content">
+                        <div class="link-title">
+                            Cheatsheets
+                            <i class="fas fa-arrow-right link-arrow"></i>
+                        </div>
+                        <p class="link-description">Interactive cheatsheets for Active Directory, privilege escalation, and more</p>
+                    </div>
+                </a>
 
-        <div class="footer">
+                <a href="https://x.com/hacck3y" class="link-card">
+                    <div class="link-icon-wrapper">
+                        <i class="fa-brands fa-x-twitter link-icon"></i>
+                    </div>
+                    <div class="link-content">
+                        <div class="link-title">
+                            X (Twitter)
+                            <i class="fas fa-arrow-right link-arrow"></i>
+                        </div>
+                        <p class="link-description">Latest updates &amp; thoughts</p>
+                    </div>
+                </a>
+
+                <a href="https://profile.hackthebox.com/profile/019cb2c4-dbba-7229-bca6-b73ef594ff86" class="link-card">
+                    <div class="link-icon-wrapper">
+                        <i class="fas fa-cube link-icon"></i>
+                    </div>
+                    <div class="link-content">
+                        <div class="link-title">
+                            HackTheBox
+                            <i class="fas fa-arrow-right link-arrow"></i>
+                        </div>
+                        <p class="link-description">CTF profile &amp; achievements</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-socials">
+                <a href="https://github.com/hacck3y" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/hacck3y" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://blogs.hacck3y.me" aria-label="Blog"><i class="fas fa-newspaper"></i></a>
+                <a href="https://profile.hackthebox.com/profile/019cb2c4-dbba-7229-bca6-b73ef594ff86" aria-label="HackTheBox"><i class="fas fa-cube"></i></a>
+            </div>
             <p class="footer-text">© 2026 Hacck3y. All rights reserved.</p>
             <p class="footer-hint">Hint: //github.com/Hacck3y</p>
-        </div>
+        </footer>
     </div>
 
     <script>
+        // Typing animation
         const typedTextElement = document.getElementById('typed-text');
         const commandText = '/usr/bin/whoami';
         const resultText = 'Hacck3y';
@@ -754,6 +1028,7 @@
 
         typeText();
 
+        // Floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             for (let i = 0; i < 20; i++) {
