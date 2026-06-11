@@ -84,6 +84,8 @@ Consultant will provide:
 
 **Late payment:** Final report and raw findings withheld until balance is paid. Testing paused if deposit not received.
 
+**Fee not contingent on findings:** The total fee is for Consultant’s time, methodology, and deliverables under this SOW — **not** for the number or severity of vulnerabilities discovered. Payment is due in full even if the report contains zero Critical or High findings, or only informational observations. A report documenting that no material issues were identified within the agreed scope and testing window still constitutes completed delivery. “No findings” does not mean the target is free of all security risk; it reflects only what was assessed under this engagement’s scope, access, and timeframe.
+
 **Expenses:** None expected unless pre-approved in writing (e.g., dedicated test environment costs).
 
 ---
