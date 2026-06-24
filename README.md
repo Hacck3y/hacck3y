@@ -16,8 +16,6 @@ I'm a security researcher and penetration tester from India, mostly living in th
 
 Most of my time goes into bug bounty research and labs. I've got one **CVE assigned**, a couple of real-world disclosures filed with **CERT-In** and **NCIIPC**, and a habit of poking at things until they give. Right now I'm deep into sharpening my Python and working my way toward browser exploitation.
 
-When I'm not at a terminal you'll probably find me outside with friends, listening to Punjabi music, or reading a bit of Osho.
-
 ---
 
 ### A few things I'm proud of
@@ -99,11 +97,6 @@ When I'm not at a terminal you'll probably find me outside with friends, listeni
 
 <img width="80%" src="https://streak-stats.demolab.com?user=Hacck3y&theme=tokyonight&hide_border=true&ring=7aa2f7&fire=bb9af7&currStreakLabel=7aa2f7" alt="streak" />
 
-<br/>
-
-<a href="https://tryhackme.com/p/hacck3y">
-  <img src="https://tryhackme-badges.s3.amazonaws.com/hacck3y.png" alt="TryHackMe" />
-</a>
 
 <br/><br/>
 
