@@ -1,10 +1,10 @@
 <!-- ===================== HEADER ===================== -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1b27,50:7aa2f7,100:bb9af7&height=190&section=header&text=Hey,%20I'm%20Hacck3y%20%F0%9F%91%8B&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=I%20break%20web%20apps%20%26%20APIs%20before%20attackers%20do.&descSize=18&descAlignY=60" alt="header"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1b27,50:7aa2f7,100:bb9af7&height=190&section=header&text=Hey,%20I'm%20Hacck3y%20%F0%9F%91%8B&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=I%20break%20web%20apps%20and%20APIs%20before%20attackers%20do.&descSize=18&descAlignY=60" alt="header"/>
 
 <!-- ===================== TYPING ===================== -->
 <div align="center">
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=700&lines=Offensive+security+%C2%B7+bug+bounty+%C2%B7+red+team;1+CVE+assigned+%C2%B7+disclosed+to+CERT-In+%26+NCIIPC;80%2B+HTB+machines+%C2%B7+100%2B+THM+rooms;CRTA+%2B+ISC2+CC+%C2%B7+chasing+CPTS+next;Always+more+to+learn.)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=7AA2F7&center=true&vCenter=true&width=700&lines=Offensive+security+%C2%B7+bug+bounty+%C2%B7+red+team;1+CVE+assigned+%C2%B7+disclosed+to+CERT-In+and+NCIIPC;80%2B+HTB+machines+%C2%B7+100%2B+THM+rooms;CRTA+%2B+ISC2+CC+%C2%B7+chasing+CPTS+next;Always+more+to+learn.)](https://git.io/typing-svg)
 
 </div>
 
